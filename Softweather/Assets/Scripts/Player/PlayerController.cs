@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] [Range(0f, 2)] private float _rotationSpeed = 1f;
     [SerializeField] private float _moveSpeed = 1f;
-    [SerializeField] private float _speedChangeRate = 10.0f;
 
     [Space(10)]
     [SerializeField] private  float _jumpHeight = 1.2f;
@@ -31,9 +30,6 @@ public class PlayerController : MonoBehaviour
     private float _speed;
     private float _verticalVelocity;
     private float _xRotation;
-    private float _jumpTimeoutDelta;
-    private float _fallTimeoutDelta;
-
     private bool _isJump;
 
     private const float THRESHOLD = 0.01f;
@@ -46,8 +42,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        GroundedCheck();
         Move();
+        GroundedCheck();
         JumpAndGravity();
     }
 
@@ -58,10 +54,9 @@ public class PlayerController : MonoBehaviour
 
     private void GroundedCheck()
     {
-        RaycastHit hit;
         var position = transform.position;
         var vector3 = new Vector3(position.x, position.y - _groundedOffset, position.z);
-        Physics.Raycast(vector3, Vector3.down, out hit, _groundedRadius, _groundLayers);
+        Physics.Raycast(vector3, Vector3.down, out var hit, _groundedRadius, _groundLayers);
         _grounded = hit.collider != null;
     }
 
@@ -84,24 +79,6 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        var targetSpeed = _moveSpeed;
-
-        if (_input == Vector2.zero) targetSpeed = 0.0f;
-
-        var currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-
-        var speedOffset = 0.1f;
-        var inputMagnitude = _input.magnitude;
-
-        if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
-        {
-            _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * _speedChangeRate);
-            _speed = Mathf.Round(_speed * 1000f) / 1000f;
-        }
-        else
-            _speed = targetSpeed;
-        
-			
         var inputDirection = new Vector3(_input.x, 0.0f, _input.y).normalized;
 			
         if (_input != Vector2.zero)
@@ -109,7 +86,7 @@ public class PlayerController : MonoBehaviour
             inputDirection = transform.right * _input.x + transform.forward * _input.y;
         }
 			
-        _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+        _controller.Move(inputDirection * (_moveSpeed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
     }
     
     private void JumpAndGravity()

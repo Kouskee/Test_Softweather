@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         EventManager.OnEnemyDead.AddListener(EnemyDead);
         SpawnStartEnemy();
     }

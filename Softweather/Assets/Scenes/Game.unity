@@ -465,6 +465,11 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!224 &300125575 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5671532175930707365, guid: 8d9c27e076f73f1439f1242b7555f7cb, type: 3}
+  m_PrefabInstance: {fileID: 5671532176679870374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &393994318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,7 +1319,6 @@ MonoBehaviour:
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
-    serializedVersion: 2
     m_Bits: 4294967295
   m_UseGeometry: 0
   m_DefaultArea: 0
@@ -1327,6 +1331,8 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 3159ad621d8adbc4b81530837ac7ae17, type: 2}
   m_BuildHeightMesh: 0
+  m_LastPosition: {x: 0, y: 0, z: 0}
+  m_LastRotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1 &1104860677
 GameObject:
   m_ObjectHideFlags: 3
@@ -1929,7 +1935,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.894027, y: 1}
+    m_SensorSize: {x: 2.018622, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2139,6 +2145,7 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 690445771}
+  - {fileID: 300125575}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2306,7 +2313,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1874312005}
     m_Modifications:
     - target: {fileID: 5671532175930707365, guid: 8d9c27e076f73f1439f1242b7555f7cb, type: 3}
       propertyPath: m_Pivot.x

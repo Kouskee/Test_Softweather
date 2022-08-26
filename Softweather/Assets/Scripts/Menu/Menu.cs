@@ -9,7 +9,12 @@ public class Menu : MonoBehaviour
     [SerializeField] private TMP_Text _score;
 
     private ISaveSystem _saveSystem;
-    
+
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
     #region Menu
 
     public void StartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
