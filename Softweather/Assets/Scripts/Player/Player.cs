@@ -10,12 +10,12 @@ public class Player : MonoBehaviour
 
     public void DealDamage()
     {
+        _health = Mathf.Clamp(_health - partOfTheCake, 0, 100);
+        EventManager.OnPlayerHit.Invoke(_health);
+        
         if (_health <= 0)
         {
             EventManager.OnGameOver.Invoke();
         }
-
-        _health = Mathf.Clamp(_health - partOfTheCake, 0, 100);
-        EventManager.OnPlayerHit.Invoke(_health);
     }
 }
